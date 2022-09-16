@@ -10,18 +10,19 @@ export const platforms = {
 };
 
 export function getPlatform() {
-  let platform = platforms.OTHER;
-  if (window.hasOwnProperty("BeforeInstallPromptEvent")) {
-    platform = platforms.NATIVE;
-  } else if (isMobile && isAndroid && isFirefox && +browserVersion >= 79) {
-    platform = platforms.FIREFOX_NEW;
-  } else if (isMobile && isAndroid && isFirefox) {
-    platform = platforms.FIREFOX;
-  } else if (isOpera && isAndroid && isMobile) {
-    platform = platforms.OPERA;
-  } else if (isIOS && isMobile) {
-    platform = platforms.IDEVICE;
+  if( typeof window !== undefined){
+    let platform = platforms.OTHER;
+    if (window.hasOwnProperty("BeforeInstallPromptEvent")) {
+      platform = platforms.NATIVE;
+    } else if (isMobile && isAndroid && isFirefox && +browserVersion >= 79) {
+      platform = platforms.FIREFOX_NEW;
+    } else if (isMobile && isAndroid && isFirefox) {
+      platform = platforms.FIREFOX;
+    } else if (isOpera && isAndroid && isMobile) {
+      platform = platforms.OPERA;
+    } else if (isIOS && isMobile) {
+      platform = platforms.IDEVICE;
+    }
+    return platform;
   }
-
-  return platform;
 }
